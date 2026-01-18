@@ -11,7 +11,8 @@
 #include <vector>
 
 #include <libff/algebra/curves/mnt/mnt6/mnt6_pp.hpp>
-#include <libff/algebra/field_utils/field_utils.hpp>#include <libff/common/profiling.hpp>
+#include <libff/algebra/field_utils/field_utils.hpp>
+#include <libff/common/profiling.hpp>
 #include <libff/common/utils.hpp>
 
 #include <libsnark/reductions/r1cs_to_sap/r1cs_to_sap.hpp>

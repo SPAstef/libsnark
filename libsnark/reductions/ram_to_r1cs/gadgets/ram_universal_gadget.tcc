@@ -14,7 +14,8 @@
 #ifndef RAM_UNIVERSAL_GADGET_TCC_
 #define RAM_UNIVERSAL_GADGET_TCC_
 
-#include <libff/algebra/field_utils/field_utils.hpp>#include <libff/common/profiling.hpp>
+#include <libff/algebra/field_utils/field_utils.hpp>
+#include <libff/common/profiling.hpp>
 #include <libff/common/utils.hpp>
 
 #include <libsnark/common/data_structures/integer_permutation.hpp>
