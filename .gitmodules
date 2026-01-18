@@ -9,7 +9,7 @@
 	url = https://github.com/herumi/xbyak.git
 [submodule "depends/libsnark-supercop"]
 	path = depends/libsnark-supercop
-	url = https://github.com/mbbarbosa/libsnark-supercop.git
+	url = https://github.com/SPAstef/libsnark-supercop.git
 [submodule "depends/libff"]
 	path = depends/libff
 	url = https://github.com/SPAstef/libff.git
