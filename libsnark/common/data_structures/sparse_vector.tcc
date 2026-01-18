@@ -266,8 +266,12 @@ namespace libsnark
         if (in_block)
         {
 #ifdef DEBUG
-            libff::print_indent();
-            printf("doing multiexp for w_%zu ... w_%zu\n", indices[first_pos], indices[last_pos]);
+            if (!libff::inhibit_profiling_info)
+            {
+                libff::print_indent();
+                printf("doing multiexp for w_%zu ... w_%zu\n", indices[first_pos],
+                       indices[last_pos]);
+            }
 #endif
             accumulated_value = accumulated_value +
                                 libff::multi_exp<T, FieldT, libff::multi_exp_method_bos_coster>(
