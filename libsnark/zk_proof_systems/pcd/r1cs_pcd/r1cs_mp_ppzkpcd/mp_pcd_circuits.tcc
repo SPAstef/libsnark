@@ -489,7 +489,7 @@ size_t mp_compliance_step_pcd_circuit_maker<ppT>::field_logsize()
 template<typename ppT>
 size_t mp_compliance_step_pcd_circuit_maker<ppT>::field_capacity()
 {
-    return libff::Fr<ppT>::capacity();
+    return libff::Fr<ppT>::floor_size_in_bits();
 }
 
 template<typename ppT>
@@ -603,7 +603,7 @@ size_t mp_translation_step_pcd_circuit_maker<ppT>::field_logsize()
 template<typename ppT>
 size_t mp_translation_step_pcd_circuit_maker<ppT>::field_capacity()
 {
-    return libff::Fr<ppT>::capacity();
+    return libff::Fr<ppT>::floor_size_in_bits();
 }
 
 template<typename ppT>
