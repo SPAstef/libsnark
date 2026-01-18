@@ -1,6 +1,11 @@
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 3.10)
 
-project (libsnark)
+project(libsnark)
+
+# Use Boost's own CMake configuration instead of the removed FindBoost module
+if(POLICY CMP0167)
+  cmake_policy(SET CMP0167 NEW)
+endif()
 
 set(
   CURVE
@@ -108,7 +113,7 @@ if(CMAKE_COMPILER_IS_GNUCXX OR "${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
     "${CMAKE_CXX_FLAGS} -std=c++11 -Wall -Wextra -Wfatal-errors"
   )
   if("${MULTICORE}")
-      set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fopenmp")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fopenmp")
   endif()
   # Default optimizations flags (to override, use -DOPT_FLAGS=...)
   if("${OPT_FLAGS}" STREQUAL "")
@@ -151,8 +156,8 @@ else()
 endif()
 
 # Enable Boost for program_options
-FIND_PACKAGE( Boost 1.40 COMPONENTS program_options REQUIRED )
-INCLUDE_DIRECTORIES( ${Boost_INCLUDE_DIR} )
+find_package(Boost 1.40 COMPONENTS program_options REQUIRED)
+include_directories(${Boost_INCLUDE_DIR})
 
 add_definitions(
   -DCURVE_${CURVE}
@@ -240,19 +245,19 @@ find_program(
 )
 if(MARKDOWN-NOTFOUND)
 else()
-   add_custom_target(
-     doc
-     ${MARKDOWN} -f ${CMAKE_CURRENT_BINARY_DIR}/README.html -x toc -x extra --noisy ${CMAKE_CURRENT_SOURCE_DIR}/README.md
-     WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
-     COMMENT "Translating from markdown to HTML" VERBATIM
-   )
+  add_custom_target(
+    doc
+    ${MARKDOWN} -f ${CMAKE_CURRENT_BINARY_DIR}/README.html -x toc -x extra --noisy ${CMAKE_CURRENT_SOURCE_DIR}/README.md
+    WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+    COMMENT "Translating from markdown to HTML" VERBATIM
+  )
 endif()
 
 # Configure CCache if available
 find_program(CCACHE_FOUND ccache)
 if(CCACHE_FOUND)
-        set_property(GLOBAL PROPERTY RULE_LAUNCH_COMPILE ccache)
-        set_property(GLOBAL PROPERTY RULE_LAUNCH_LINK ccache)
+  set_property(GLOBAL PROPERTY RULE_LAUNCH_COMPILE ccache)
+  set_property(GLOBAL PROPERTY RULE_LAUNCH_LINK ccache)
 endif(CCACHE_FOUND)
 
 # Add a `make check` target that builds and tests
