@@ -450,7 +450,10 @@ namespace libsnark
         uscs_ppzksnark_proof<ppT> proof = uscs_ppzksnark_proof<ppT>(
             std::move(V_g1), std::move(alpha_V_g1), std::move(H_g1), std::move(V_g2));
 
-        proof.print_size();
+        if (!libff::inhibit_profiling_info)
+        {
+            proof.print_size();
+        }
 
         return proof;
     }

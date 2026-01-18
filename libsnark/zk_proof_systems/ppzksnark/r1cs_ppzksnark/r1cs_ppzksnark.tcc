@@ -560,7 +560,11 @@ namespace libsnark
 
         r1cs_ppzksnark_proof<ppT> proof = r1cs_ppzksnark_proof<ppT>(
             std::move(g_A), std::move(g_B), std::move(g_C), std::move(g_H), std::move(g_K));
-        proof.print_size();
+
+        if (!libff::inhibit_profiling_info)
+        {
+            proof.print_size();
+        }
 
         return proof;
     }
