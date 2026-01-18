@@ -37,6 +37,6 @@ if(NOT "${USE_LINKED_LIBRARIES}")
   OPTION(IS_LIBFF_PARENT OFF)
   add_subdirectory(libff)
 
-  OPTION(IS_LIBFQFFT_PARENT OFF)
+  OPTION(IS_LIBFQFFT_PARENT ON)
   add_subdirectory(libfqfft)
 endif()
