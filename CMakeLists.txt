@@ -213,7 +213,7 @@ if("${PERFORMANCE}")
   add_definitions(-DNDEBUG)
   set(
     CMAKE_CXX_FLAGS
-    "${CMAKE_CXX_FLAGS} -flto -fuse-linker-plugin"
+    "${CMAKE_CXX_FLAGS} -flto -fuse-linker-plugin -ffat-lto-objects"
   )
   set(
     CMAKE_EXE_LINKER_FLAGS
