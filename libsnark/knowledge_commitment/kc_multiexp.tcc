@@ -87,7 +87,7 @@ namespace libsnark
             ++value_it;
         }
 
-        if (!inhibit_profiling_info)
+        if (!libff::inhibit_profiling_info)
         {
             libff::print_indent();
             printf("* Elements of w skipped: %zu (%0.2f%%)\n", num_skip,
