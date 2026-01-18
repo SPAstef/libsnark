@@ -254,14 +254,17 @@ namespace libsnark
         qap_instance_evaluation<libff::Fr<ppT>> qap_inst = r1cs_to_qap_instance_map_with_evaluation(
             cs_copy, t);
 
-        libff::print_indent();
-        printf("* QAP number of variables: %zu\n", qap_inst.num_variables());
-        libff::print_indent();
-        printf("* QAP pre degree: %zu\n", cs_copy.constraints.size());
-        libff::print_indent();
-        printf("* QAP degree: %zu\n", qap_inst.degree());
-        libff::print_indent();
-        printf("* QAP number of input variables: %zu\n", qap_inst.num_inputs());
+        if (!libff::inhibit_profiling_info)
+        {
+            libff::print_indent();
+            printf("* QAP number of variables: %zu\n", qap_inst.num_variables());
+            libff::print_indent();
+            printf("* QAP pre degree: %zu\n", cs_copy.constraints.size());
+            libff::print_indent();
+            printf("* QAP degree: %zu\n", qap_inst.degree());
+            libff::print_indent();
+            printf("* QAP number of input variables: %zu\n", qap_inst.num_inputs());
+        }
 
         libff::enter_block("Compute query densities");
         size_t non_zero_At = 0, non_zero_Bt = 0, non_zero_Ct = 0, non_zero_Ht = 0;
@@ -339,10 +342,14 @@ namespace libsnark
 
         size_t g1_window = libff::get_exp_window_size<libff::G1<ppT>>(g1_exp_count);
         size_t g2_window = libff::get_exp_window_size<libff::G2<ppT>>(g2_exp_count);
-        libff::print_indent();
-        printf("* G1 window: %zu\n", g1_window);
-        libff::print_indent();
-        printf("* G2 window: %zu\n", g2_window);
+
+        if (!libff::inhibit_profiling_info)
+        {
+            libff::print_indent();
+            printf("* G1 window: %zu\n", g1_window);
+            libff::print_indent();
+            printf("* G2 window: %zu\n", g2_window);
+        }
 
 #ifdef MULTICORE
         const size_t chunks =
@@ -437,8 +444,11 @@ namespace libsnark
             std::move(A_query), std::move(B_query), std::move(C_query), std::move(H_query),
             std::move(K_query), std::move(cs_copy));
 
-        pk.print_size();
-        vk.print_size();
+        if (!libff::inhibit_profiling_info)
+        {
+            pk.print_size();
+            vk.print_size();
+        }
 
         return r1cs_ppzksnark_keypair<ppT>(std::move(pk), std::move(vk));
     }
