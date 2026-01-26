@@ -70,6 +70,7 @@ else()
     PUBLIC
     ${DEPENDS_DIR}/libff
     ${DEPENDS_DIR}/libfqfft
+    ${DEPENDS_DIR}
   )
 endif()
 

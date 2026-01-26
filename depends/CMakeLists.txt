@@ -10,6 +10,31 @@ if(${CURVE} STREQUAL "BN128")
     ate-pairing/src/zm.cpp
     ate-pairing/src/zm2.cpp
   )
+  
+  install(
+    DIRECTORY ate-pairing DESTINATION "include"
+    FILES_MATCHING
+    PATTERN "*.h"
+    PATTERN "*.hpp"
+    PATTERN "src" EXCLUDE
+    PATTERN "test" EXCLUDE
+    PATTERN "proj" EXCLUDE
+    PATTERN "java" EXCLUDE
+    PATTERN "lib" EXCLUDE
+  )
+  
+  install(
+    TARGETS zm DESTINATION lib
+  )
+  
+  install(
+    DIRECTORY xbyak DESTINATION "include"
+    FILES_MATCHING
+    PATTERN "*.h"
+    PATTERN "sample" EXCLUDE
+    PATTERN "test" EXCLUDE
+    PATTERN "gen" EXCLUDE
+  )
 endif()
 
 if("${WITH_SUPERCOP}")
